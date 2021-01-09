@@ -1,0 +1,49 @@
+<!--pages/add/add.wxml-->
+<image class='backgroundImage' src='/images/add-background.png'></image>
+    <label>我捡到</label>
+<view class='container' wx:if='{{page == 0}}'>
+    <view class='title'>
+        <view class='selected'>
+            <text class='' bindtap='selectCard'>校园卡</text>
+        </view>
+        <view class='not-selected'>
+            <text bindtap='selectOther'>其他</text>
+        </view>
+    </view>
+    <text>姓名：</text>
+    <input value='{{card_name}}' bindinput='cEditName'/>
+    <text>学院：</text>
+    <input value='{{card_college}}' bindinput='cEditCollege'/>
+    <text>学号：</text>
+    <input value='{{card_stuId}}' bindinput='cEditStuId' maxlength='20'/>
+    <text>招领地点：</text>
+    <input value='{{card_location}}' bindinput='cEditLocation'/>
+    <button class='submitBtn' bindtap='submit' disabled='{{loading}}' loading='{{loading}}'>点击提交</button>
+</view>
+<view  class='container' wx:else>
+    <view class='title'>
+        <view class='not-selected'>
+            <text bindtap='selectCard'>校园卡</text>
+        </view>
+        <view class='selected'>
+            <text class='' bindtap='selectOther'>其他</text>
+        </view>
+    </view>
+    <text>图片上传</text>
+    <image class='upload' src='{{other_image}}' bindtap='chooseImage'/>
+
+    <picker class='wrapper' value='{{index}}' range='{{category}}' bindchange='tapCategory'>
+        <text>类别：</text>
+        <text class='subtitle' space='emsp'> {{other_category}}</text>
+    </picker>
+
+    <text>描述:</text>
+    <input value='{{other_description}}' bindinput='oEditDescription'/>
+    <text>招领地点/联系方式:</text>
+    <input value='{{other_location}}' bindinput='oEditLocation'/>
+    <button class='submitBtn' bindtap='submit'  disabled='{{loading}}' loading='{{loading}}'>点击提交</button>
+</view>
+<view class='caseTextContainer'>
+    <text class='upText'>— 本 月 招 领 情 况 —</text>
+    <text class='downText' space="emsp">{{addNum}}发布 | {{backNum}}找回</text>
+</view>

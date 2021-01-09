@@ -1,0 +1,19 @@
+<!--pages/info/info.wxml-->
+<view class='wrapper' >
+    <picker style='width:100%;' value='{{index}}' range="{{schools}}" bindchange='tapSchool'>
+        <text class='title'>学校</text>
+        <text>{{school}}</text>
+    </picker>
+</view>
+<view class='wrapper'>
+    <text class='title'>学院</text>
+    <input style='width:70%;' value='{{college}}' bindblur='editCollege'/>
+</view>
+<view class='wrapper'>
+    <text class='title'>姓名</text>
+    <input style='width:70%;' value='{{name}}' bindblur='editName'/>
+</view>
+<view class='wrapper'>
+    <text class='title'>学号</text>
+    <input style='width:70%;' value='{{stuId}}' maxlength='20' bindblur='editStudentId'/>
+</view>

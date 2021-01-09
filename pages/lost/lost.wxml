@@ -1,0 +1,138 @@
+<!--pages/lost.wxml
+author: zhaoyu wang
+startdate: 2019/4/28
+-->
+<view class='lost_container'>
+  <swiper class='swiper_lost' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key='index'>
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode='widthFix' height="130" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='container_cs'>
+    <view class='cu-bar search bg-white'>
+      <button class='btn_1' bindtap='changebtn' style="font-size:{{btn_1_size < 7? '28rpx' : '22rpx'}}">{{navLeftItems[btn_1index]}}</button>
+    </view>
+    <view class="cu-bar search bg-white">
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="{{placeholder[curNav]}}" confirm-type="search" style="width: 480rpx;" bindconfirm='search'></input>
+      </view>
+    </view>
+
+    <view class="{{navleftenable == false ? 'hiden':'nav_left'}} ">
+      <block wx:for="{{navLeftItems}}" wx:key='index'>
+        <view class="nav_left_items {{curNav == index ? 'active' : ''}}" bindtap='changeleft' data-index='{{index}}'>
+          <text class="nav">{{item}}</text>
+          <view class="{{curNav == index ? 'tixing' : 'hiden'}}"></view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <scroll-view scroll-y='true' style="height : {{scrollHeight}}px" class='scrollitem' bindscrolltolower="loadMoreData">
+
+    <view class='hasNoData' wx:if="{{cardslength == 0 && curNav == 0 || itemslength == 0 && curNav != 0}}">
+      <image class='noDataIcon' src='../../images/zanWuXinXi.png'></image>
+      <view class='noDataInfo'>暂无信息</view>
+    </view>
+
+
+    <view class="{{curNav==0?'hiden':'nav_right'}}">
+      <block wx:for="{{iteminfo.lost_item_list}}" wx:key='index'>
+        <view class="nav_right_items" bindtap='showitemsinfo' data-index='{{index}}'>
+          <view>
+            <block wx:if="{{teminfo.lost_item_list[index].pic_url!=''}}">
+              <image src="{{iteminfo.lost_item_list[index].pic_url}}" mode='scaleToFill'></image>
+            </block>
+          </view>
+          <view wx:if="{{iteminfo.lost_item_list[index].desc}}">
+            <text overflow='hidden'>{{iteminfo.lost_item_list[index].desc}}</text>
+          </view>
+        </view>
+      </block>
+      <!-- 下拉加载动画 -->
+      <view wx:if="{{isLoadingMoreData}}" class="cu-load bg-grey {{!isLoad?'loading':'over'}}" style="background:#07d;"></view>
+    </view>
+
+    <view class="{{curNav==0?'navcard':'hiden'}}">
+      <view class='heads'>
+        <text class='head_name'>姓名</text>
+        <text class='head'>学院</text>
+        <text class='head'>招领地点</text>
+        <text class='head'>时间</text>
+      </view>
+      <block wx:for=" {{cardinfo.lost_card_list}} " wx:key='*this'>
+        <view class='lists' wx:if="{{cardinfo.lost_card_list[index].name}}">
+          <view bindtap='lookcardinfo' id='name' class='list_name' data-index='{{index}}'>{{cardinfo.lost_card_list[index].name}}</view>
+          <view bindtap='lookcardinfo' id='college' class='list' data-index='{{index}}'>{{cardinfo.lost_card_list[index].college}}</view>
+          <view class='list_place' wx:if="{{cardinfo.lost_card_list[index].id}}">
+            <button wx:if="{{cardplace==false||cardplace_index!=index}}" class='btn_place' bindtap='cardplacekit' data-index='{{index}}' id='card'>查看</button>
+            <view bindtap='lookcardinfo' id='place' wx:if="{{cardplace==true&&cardplace_index==index}}" class='list' data-index='{{index}}'>{{cardinfo.lost_card_list[index].take_place}}</view>
+          </view>
+          <view class='list_time'>{{cardinfo.lost_card_list[index].time}}</view>
+        </view>
+      </block>
+      <!-- 下拉加载动画 -->
+      <view wx:if="{{isLoadingMoreData}}" class="cu-load bg-grey {{!isLoad?'loading':'over'}}" style="background:#07d;"></view>
+    </view>
+  </scroll-view>
+
+  <view class="{{zhezhao1==false ? 'hiden' : 'zhezhao1'}} ">
+    <view class='zhezhaoContent'>
+      <image src='../../images/close.png' class='close' bindtap='cancel1'></image>
+      <view wx:if="{{chakanbutton}}" class='chakanModal'>
+        <view class='chakanmsg1'>请确认是您的物品</view>
+        <view class='chakanmsg2'>点击确认后，其他人将不可见此失物
+如误点，可在[我的]界面-撤回领取</view>
+        <button class='btn_chakan' bindtap='chakanModal'>确认</button>
+      </view>
+      <view wx:else class='completeinfo'>{{completedmsg}}</view>
+    </view>
+  </view>
+
+
+
+
+
+  <view class="{{zhezhao==false ? 'hiden' : 'zhezhao'}} ">
+    <view class='zhezhaoContent1'>
+      <image src='../../images/close.png' class='close1' bindtap='cancel'></image>
+      <image src="{{iteminfo.lost_item_list[itemid].pic_url}} " mode='aspectFill' class='zhanshi'></image>
+      <view class='miaoshu'>
+        <view class='miaoshuitem'>
+          <text class='biaoti' decode='true' space='emsp'>类  别：</text>
+          <text class='juti'>{{navLeftItems[curNav]}}</text>
+        </view>
+        <view class='miaoshuitem'>
+          <text class='biaoti' decode='true' space='emsp'>失物描述：</text>
+          <text class='juti'>{{iteminfo.lost_item_list[itemid].desc}}</text>
+        </view>
+        <view class='miaoshuitem'>
+          <text class='biaoti' decode='true' space='emsp'>捡拾时间：</text>
+          <text class='juti'>{{iteminfo.lost_item_list[itemid].releaseTime}}</text>
+        </view>
+      </view>
+      <view class='showitemplacewrap'>
+        <button class="{{showplace==false? 'watch': 'hiden'}} " id='item' bindtap='showitemsplace'>确认领取并查看领取方式</button>
+        <view class="{{showplace==false? 'hiden': 'itemplace'}} ">您的失物在：{{iteminfo.lost_item_list[itemid].takePlace}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-modal {{modalName=='Modal' ? 'show': ''}} ">
+    <view class="cu-dialog " style='width:70%;'>
+      <view class="cu-bar bg-white justify-end ">
+        <view class="content ">确认失败</view>
+        <view class="action " bindtap="hideModal">
+          <text class="cuIcon-close text-red "></text>
+        </view>
+      </view>
+      <view class="padding-xl ">
+        {{cmsg}}
+      </view>
+    </view>
+  </view>
+</view>

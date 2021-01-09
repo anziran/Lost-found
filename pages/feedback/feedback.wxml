@@ -1,0 +1,10 @@
+<!--pages/feedback/feedback.wxml-->
+<view class='textarea-wrp'>
+    <textarea class='.textarea' maxlength='400' placeholder='{{adviceInput}}' value='{{text}}' bindinput='textInput'/>
+</view>
+<view class='count'>{{count}}/400</view>
+<view class='contact-container'>
+    <text style='margin:10px;margin-right:30px;'>联系电话</text>
+    <input style='flex:1;' type='number' maxlength='20' placeholder='{{phoneInput}}' value='{{num}}' bindinput='numInput'/>
+</view>
+<button class='submitButton' bindtap='submit' disabled='{{loading}}' loading='{{loading}}'>提 交</button>

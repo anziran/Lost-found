@@ -1,0 +1,82 @@
+/* pages/home/home.wxss */
+page {
+    background-color: #f3f3f3;
+    height: 100%;
+    line-height: 1.5;
+}
+
+.head-container{
+  background: white;
+}
+
+.userinfo-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userinfo-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+.num-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.num-item{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  width: 50%;
+}
+
+.num-text{
+  color:gray
+}
+
+.num-num{
+  font-size: 25px;
+}
+
+.line-ver{
+    background: #cfcfcf ;
+    width: 1px;
+    height: 40px;
+}
+
+.line-hor{
+    background: #f3f3f3;
+    width: 100%;
+    height: 1px;
+}
+
+.option-container{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: 18px;
+  margin-top: 2px;
+  background: white;
+}
+
+.icon{
+  width: 25px;
+  height: 25px;
+  padding: 15px;
+}
+
+.get-userinfo-avatar{
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  margin: 30px;
+}

@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<image class='backgroundImage' src='/images/cover.jpg'></image>   
+<view wx:if="{{userId != ''}}">
+    <view class='wrapper'>
+        <view class='container'>
+            <picker style='width:100%;text-align:center;' bindchange='bindPickerChange' value='{{index}}' range="{{schools}}">{{school}}</picker>
+        </view>
+        <button class='loginButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{school !== '选择高校'}}" space='emsp'>点击进入</button>
+    </view>
+</view>

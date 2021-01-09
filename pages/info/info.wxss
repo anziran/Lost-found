@@ -1,0 +1,29 @@
+/* pages/info/info.wxss */
+page {
+    background-color: #F8F8F8;
+    height: 100%;
+    line-height: 1.5;
+}
+
+.wrapper{
+    display: flex;
+    background-color: white;
+    margin-top: 5px;
+    font-size: 18px;
+    height: 45px;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+}
+
+.title{
+    margin: 15px;
+    margin-right: 45px;
+    word-break: keep-all;
+    white-space: nowrap;     
+}
+
+.title2{
+    margin: 15px;
+    width: 65px;
+}

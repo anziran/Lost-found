@@ -1,0 +1,24 @@
+<!--pages/myAdd/myAdd.wxml-->
+<view class='title'>我已发布的招领信息</view>
+<view wx:for='{{dataArray}}' wx:key='{{index}}'>
+    <view class='item-container' >
+        <view class='info-container'>
+            <view class='info-line'>
+                <text class='info-category'>{{item.category}}</text>
+                <text class='info-take_place' space='emsp' bindtap='showLocation' data-index='{{index}}'> {{item.take_place}}</text>
+            </view>
+            <text class='info-description' bindtap='showDescription' data-index='{{index}}'>{{item.description}}</text>
+        </view>
+        <!-- 发布中 -->
+        <button wx:if='{{item.state == 0}}' class='cancelBtn' bindtap='cancel' data-index='{{index}}'>撤销发布</button>
+        <!-- 被领取 -->
+        <label wx:elif='{{item.state == 1}}' style='color:green;' class='cancelBtn'>已被领取</label>
+        <!-- 已撤销 -->
+        <label wx:elif='{{item.state == 2}}' style='color:red;' class='cancelBtn'>已撤销</label>
+    </view>
+    <view class='line-hor' />
+</view>
+<button class='loadBtn' bindtap='requestData' loading='{{isLoading}}'>加载不全？</button>
+
+<view class='greyGlass' wx:if='{{showBoard}}' bindtap='closeBoard'></view>
+<scroll-view class='infoBoard' scroll-y='true' wx:if='{{showBoard}}' >{{boardText}}</scroll-view>
