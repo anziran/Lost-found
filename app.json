@@ -1,0 +1,44 @@
+{
+    "pages": [
+        "pages/add/add",
+        "pages/login/login",
+        "pages/lost/lost",
+        "pages/home/home",
+        "pages/myAdd/myAdd",
+        "pages/myLost/myLost",
+        "pages/info/info",
+        "pages/feedback/feedback"
+    ],
+    "tabBar": {
+        "custom": true,
+        "color": "#7A7E83",
+        "selectedColor": "#6495ED",
+        "list": [
+            {
+                "pagePath": "pages/lost/lost",
+                "iconPath": "/images/lost-no.png",
+                "selectedIconPath": "/images/lost.png",
+                "text": "我丢失"
+            },
+            {
+                "pagePath": "pages/add/add",
+                "iconPath": "/images/add-no.png",
+                "selectedIconPath": "/images/add.png",
+                "text": "我捡到"
+            },
+            {
+                "pagePath": "pages/home/home",
+                "iconPath": "/images/home-no.png",
+                "selectedIconPath": "/images/home.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#5673fd",
+        "navigationBarTitleText": "腾寻 | 高校失物招领",
+        "navigationBarTextStyle": "white"
+    },
+    "sitemapLocation": "sitemap.json"
+}
